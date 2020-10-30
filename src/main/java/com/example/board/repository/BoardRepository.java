@@ -6,6 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.board.entity.Board;
 
-public interface BoardRepository extends CrudRepository<Board, Integer>{
+/**
+ * @author hyeok
+ *
+ */
+public interface BoardRepository extends CrudRepository <Board, Integer>{
 	public List<Board> findByDelYn(String delYn);
+	public List<Board> findByTitleOrDelYn(String title, String delYn);
+
 }
