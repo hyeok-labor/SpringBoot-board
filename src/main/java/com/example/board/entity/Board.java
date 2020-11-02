@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.board.util.DateUtil;
+
 // DB에 테이블 보드를 인식하게 한다.
 /**
  * @author Hyeok
@@ -23,8 +25,8 @@ public class Board {	// 테이블과 매핑시키는 역할을하는 클래스
 	@Column(name="content")
 	private String content;
 
-	@Column(name="create_date")
-	private String createDate="오늘날짜";
+	@Column(name="create_date", updatable = false)
+	private String createDate = DateUtil.getCurrentDate();
 
 	@Column(name="create_id")
 	private String createId;
@@ -39,7 +41,7 @@ public class Board {	// 테이블과 매핑시키는 역할을하는 클래스
 	private String title;
 
 	@Column(name="update_date")
-	private String updateDate="오늘날짜";
+	private String updateDate;
 
 	@Column(name="update_id")
 	private String updateId;

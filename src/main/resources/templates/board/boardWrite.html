@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Board Write</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	<div class="container">
+		<h2>게시판 등록</h2>	<!-- 머릿글 -->
+		<form id="frm" name="frm" method="post" action="/board/insertBoard">	<!--  form 안에 있는 value 그대로 실행 -->
+			<table class="board_detail">
+				<tr>
+					<td>제목</td>
+					<td><input type="text" id="title" name="title"></td>
+				</tr>
+				<tr>
+					<td>작성자</td>
+					<td><input type="text" id="writeName" name="writeName"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<textarea id="content" name="content"></textarea>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" id="submit" value="저장" class="btn">	<!-- form 종료 전 input에서 submit 한다 -->
+		</form>
+	</div>
+</body>
+</html>

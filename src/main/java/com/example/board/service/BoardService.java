@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.board.entity.Board;
 import com.example.board.repository.BoardRepository;
+import com.example.board.util.DateUtil;
 
 /**
  * @author hyeok
@@ -25,13 +26,24 @@ public class BoardService {
 
 		return (List<Board>) boardRepository.findAll();
 	}
+
 	// 게시판 1건 가져오기
 	public Board getBoard(int boardId) {
 		Optional<Board> board = boardRepository.findById(boardId);
+		if(board.get()!=null) {
+			Board bd = board.get();
+			bd.setHitCnt(board.get().getHitCnt()+1);
+			boardRepository.save(bd);
+		}
 		return board.get();
 	}
-	//	게시판 삽입
+
+	//	게시물 삽입
 	public int insertBoard(Board board) {
+		board.setHitCnt(0);
+		board.setDelYn("N");
+		board.setUpdateDate(DateUtil.getCurrentDate());
+
 		boardRepository.save(board);
 		return board.getBoardIdx();
 	}
@@ -42,11 +54,13 @@ public class BoardService {
 		if (boardTmp.get() != null) {
 			boardTmp.get().setContent(board.getContent());
 			boardTmp.get().setTitle(board.getTitle());
-			boardTmp.get().setUpdateDate("현재시간");
-			boardTmp.get().setUpdateId("kkkkk");
+			boardTmp.get().setUpdateDate(DateUtil.getCurrentDate());
+			//boardTmp.get().setUpdateId("kkkkk");
+			boardRepository.save(boardTmp.get());
 		}
-		boardRepository.save(boardTmp.get());
+
 	}
+
 	// 게시판 삭제
 	public void deleteBoard(int boardIdx) {
 		boardRepository.deleteById(boardIdx);
