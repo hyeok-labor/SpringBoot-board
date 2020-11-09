@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.board.entity.Board;
+import com.example.board.entity.Member;
 import com.example.board.service.BoardService;
 
 /**
@@ -15,18 +18,27 @@ import com.example.board.service.BoardService;
  * 2020. 10. 26.
  * @return
  */
+@SessionAttributes("member")
 @Controller
 public class MainController {
 	@Autowired
 	private BoardService boardService;
 
+	@RequestMapping("/")
+	public String root() {
+		return "/login";
+	}
 	// html 파일명과 일치 해야한다.!!!!
 	@RequestMapping("/board/list")
-	public ModelAndView listBoard(){
-		ModelAndView mv = new ModelAndView("/board/list");
-
-		List<Board> list = boardService.listBoard();
-		mv.addObject("list", list);
+	public ModelAndView listBoard(@ModelAttribute("member") Member member){
+		ModelAndView mv = null;
+		if(member.getMemId()==null) {
+			mv = new ModelAndView("/login");
+		}else {
+			mv = new ModelAndView("/board/list");
+			List<Board> list = boardService.listBoard();
+			mv.addObject("list", list);
+		}
 		return mv;
 	}
 

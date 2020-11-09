@@ -8,6 +8,11 @@
 <body>
 	<div class="container">
 		<h2>게시판 목록</h2>
+		<h4>
+			<font color="blue" th:text="${session['member'].memName}"></font>
+			[<font color="blue" th:text="${session['member'].memId}"></font>]
+			 환영합니다!
+		</h4>
 		<table class="board_list">
 			<colgroup>
 				<col width="10%" />

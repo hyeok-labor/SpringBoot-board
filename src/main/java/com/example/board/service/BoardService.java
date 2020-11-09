@@ -23,7 +23,6 @@ public class BoardService {
 	public List<Board> listBoard(){
 		//		String delYn = "N";
 		//		boardRepository.findByDelYn(delYn);
-
 		return (List<Board>) boardRepository.findAll();
 	}
 
@@ -55,7 +54,7 @@ public class BoardService {
 			boardTmp.get().setContent(board.getContent());
 			boardTmp.get().setTitle(board.getTitle());
 			boardTmp.get().setUpdateDate(DateUtil.getCurrentDate());
-			//boardTmp.get().setUpdateId("kkkkk");
+			boardTmp.get().setUpdateId(board.getUpdateId());
 			boardRepository.save(boardTmp.get());
 		}
 

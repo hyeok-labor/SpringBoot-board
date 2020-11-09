@@ -8,8 +8,14 @@
 <body>
 	<div class="container">
 		<h2>게시판 상세화면</h2>
+		<h4>
+			<font color="blue" th:text="${session['member'].memName}"></font>
+			[<font color="blue" th:text="${session['member'].memId}"></font>]
+			 환영합니다!
+		</h4>
 		<form id="frm" name="frm" method="post" action="/board/updateBoard">
 			<input type="hidden" id="boardIdx" name="boardIdx" th:value="${board.boardIdx}" />
+			<input type="hidden" id="updateId" name="updateId" th:value="${session['member'].memId}" />
 			<table class="board_detail">
 				<tbody>
 					<tr>

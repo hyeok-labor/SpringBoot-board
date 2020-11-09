@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>member login</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	<div class="container" th:align="center">
+		<h2>로그인</h2>
+		<form th:action="loginSubmit" method="post">
+		<table style="border: 1px solid #444444;">
+			<tr>
+				<td style="background-color: orange">아이디</td>
+				<td><input name="memId" type="text" size="10"></td>
+			</tr>
+			<tr>
+				<td style="background-color: orange">비밀번호</td>
+				<td><input name="memPass" type="password" size="10"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="로그인">
+				</td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</body>
+</html>

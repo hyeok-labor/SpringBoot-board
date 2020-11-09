@@ -8,7 +8,13 @@
 <body>
 	<div class="container">
 		<h2>게시판 등록</h2>	<!-- 머릿글 -->
+		<h4>
+			<font color="blue" th:text="${session['member'].memName}"></font>
+			[<font color="blue" th:text="${session['member'].memId}"></font>]
+			 환영합니다!
+		</h4>
 		<form id="frm" name="frm" method="post" action="/board/insertBoard">	<!--  form 안에 있는 value 그대로 실행 -->
+			<input type="hidden" name="createId" th:value="${session['member'].memId}">
 			<table class="board_detail">
 				<tr>
 					<td>제목</td>
@@ -16,7 +22,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td><input type="text" id="writeName" name="writeName"></td>
+					<td><input type="text" id="writeName" name="writeName" th:value="${session['member'].memName}" readonly></td>
 				</tr>
 				<tr>
 					<td colspan="2">
